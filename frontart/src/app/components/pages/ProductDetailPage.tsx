@@ -184,7 +184,7 @@ export function ProductDetailPage() {
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
-                    className={`h-20 overflow-hidden bg-white rounded-lg border-2 transition-all flex items-center justify-center ${selectedImage === index ? 'border-[#a73f2b] shadow-md' : 'border-gray-200 hover:border-gray-300'}`}
+                    className={`h-20 overflow-hidden bg-white rounded-lg border-2 transition-all flex items-center justify-center ${selectedImage === index ? 'border-[#b30452] shadow-md' : 'border-gray-200 hover:border-gray-300'}`}
                   >
                     <img src={image} alt={`View ${index + 1}`} className="w-full h-full object-contain" loading="lazy" />
                   </button>
@@ -214,7 +214,7 @@ export function ProductDetailPage() {
                   </div>
                 )}
               </div>
-              <span className="text-gray-600 text-sm">by <span className="font-medium text-[#a73f2b]">{String(product.artist?.username || 'Unknown Artist')}</span></span>
+              <span className="text-gray-600 text-sm">by <span className="font-medium text-[#b30452]">{String(product.artist?.username || 'Unknown Artist')}</span></span>
             </div>
 
             <div className="flex items-center gap-2 mb-5">
@@ -275,7 +275,7 @@ export function ProductDetailPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0">
-                    <User className="w-4 h-4 text-[#a73f2b]" />
+                    <User className="w-4 h-4 text-[#b30452]" />
                   </div>
                   <div>
                     <div className="text-[11px] text-gray-400 uppercase tracking-wide mb-0.5">Artist</div>
@@ -284,7 +284,7 @@ export function ProductDetailPage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0">
-                    <Tag className="w-4 h-4 text-[#a73f2b]" />
+                    <Tag className="w-4 h-4 text-[#b30452]" />
                   </div>
                   <div>
                     <div className="text-[11px] text-gray-400 uppercase tracking-wide mb-0.5">Category</div>
@@ -293,7 +293,7 @@ export function ProductDetailPage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0">
-                    <Paintbrush className="w-4 h-4 text-[#a73f2b]" />
+                    <Paintbrush className="w-4 h-4 text-[#b30452]" />
                   </div>
                   <div>
                     <div className="text-[11px] text-gray-400 uppercase tracking-wide mb-0.5">Medium</div>
@@ -302,7 +302,7 @@ export function ProductDetailPage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0">
-                    <Package className="w-4 h-4 text-[#a73f2b]" />
+                    <Package className="w-4 h-4 text-[#b30452]" />
                   </div>
                   <div>
                     <div className="text-[11px] text-gray-400 uppercase tracking-wide mb-0.5">Material</div>
@@ -311,7 +311,7 @@ export function ProductDetailPage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0">
-                    <Ruler className="w-4 h-4 text-[#a73f2b]" />
+                    <Ruler className="w-4 h-4 text-[#b30452]" />
                   </div>
                   <div>
                     <div className="text-[11px] text-gray-400 uppercase tracking-wide mb-0.5">Size</div>
@@ -320,7 +320,7 @@ export function ProductDetailPage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0">
-                    <Calendar className="w-4 h-4 text-[#a73f2b]" />
+                    <Calendar className="w-4 h-4 text-[#b30452]" />
                   </div>
                   <div>
                     <div className="text-[11px] text-gray-400 uppercase tracking-wide mb-0.5">Year</div>
@@ -354,8 +354,8 @@ export function ProductDetailPage() {
                     <div className="text-xs text-gray-500 truncate mb-1">
                       {typeof related.artist === 'object' ? String(related.artist?.username || 'Artist') : String(related.artist || 'Artist')}
                     </div>
-                    <h3 className="font-medium text-gray-900 text-sm line-clamp-1 group-hover:text-[#a73f2b] transition-colors">{String(related.title || '')}</h3>
-                    <div className="text-[#a73f2b] font-bold mt-2 text-sm">₹{Number(related.price || 0).toLocaleString('en-IN')}</div>
+                    <h3 className="font-medium text-gray-900 text-sm line-clamp-1 group-hover:text-[#b30452] transition-colors">{String(related.title || '')}</h3>
+                    <div className="text-[#b30452] font-bold mt-2 text-sm">₹{Number(related.price || 0).toLocaleString('en-IN')}</div>
                   </div>
                 </div>
               ))}

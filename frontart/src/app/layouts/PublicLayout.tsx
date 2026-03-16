@@ -1,7 +1,6 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { BackToTop } from '../components/BackToTop';
 import { Toaster } from 'sonner';
 
 export function PublicLayout() {
@@ -12,7 +11,6 @@ export function PublicLayout() {
                 <Outlet />
             </main>
             <Footer />
-            <BackToTop />
             <Toaster />
         </div>
     );

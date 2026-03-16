@@ -5,7 +5,7 @@ import { PublicLayout } from './layouts/PublicLayout';
 import { AdminLayout } from './layouts/AdminLayout';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { LaunchOverlay } from './components/LaunchOverlay';
-import IntroVideo from '../components/IntroVideo';
+
 import { Loader2 } from 'lucide-react';
 
 // Lazy Load Pages
@@ -37,9 +37,6 @@ const PrivacyPage = lazy(() => import('./components/pages/PrivacyPage').then(mod
 const ReturnsRefundsPage = lazy(() => import('./components/pages/ReturnsRefundsPage').then(module => ({ default: module.ReturnsRefundsPage })));
 const NotFoundPage = lazy(() => import('./components/pages/NotFoundPage').then(module => ({ default: module.NotFoundPage })));
 const OrderConfirmationPage = lazy(() => import('./components/pages/OrderConfirmationPage').then(module => ({ default: module.OrderConfirmationPage })));
-/* const SellArtPage = lazy(() => import('./components/pages/SellArtPage').then(module => ({ default: module.SellArtPage }))); */
-// Note: SellArtPage import was commented out in original code or assumed present. Adding it back based on context if it was used.
-// Checking original file... it was used on line 30: import { SellArtPage } from './components/pages/SellArtPage';
 const SellArtPage = lazy(() => import('./components/pages/SellArtPage').then(module => ({ default: module.SellArtPage })));
 const OrderSuccessPage = lazy(() => import('./components/pages/OrderSuccessPage').then(module => ({ default: module.OrderSuccessPage })));
 
@@ -77,7 +74,6 @@ const AdminSupport = lazy(() => import('./components/dashboard/admin/AdminSuppor
 const AdminRevenue = lazy(() => import('./components/dashboard/admin/AdminRevenue').then(module => ({ default: module.AdminRevenue })));
 const AdminReports = lazy(() => import('./components/dashboard/admin/AdminReports').then(module => ({ default: module.AdminReports })));
 
-import { Toaster } from './components/ui/sonner';
 import { useParams } from 'react-router-dom';
 
 // Redirect component for old /verify/:token format
@@ -127,7 +123,7 @@ export default function App() {
 
   return (
     <AppProvider>
-      <IntroVideo />
+
       {!launched && <LaunchOverlay onLaunch={() => setLaunched(true)} />}
       <ScrollToTop />
       <Suspense fallback={<PageLoader />}>

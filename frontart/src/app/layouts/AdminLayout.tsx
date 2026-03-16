@@ -3,6 +3,7 @@ import { useApp } from '../context/AppContext';
 import { LayoutDashboard, Users, Store as StoreIcon, Image as ImageIcon, ShoppingBag, Layers, Palette, CreditCard, PieChart, FileText, Settings, HelpCircle, LogOut } from 'lucide-react';
 import { cn } from '../components/ui/utils';
 import { Button } from '../components/ui/button';
+import { motion } from 'motion/react';
 import { Header } from '../components/Header';
 
 export function AdminLayout() {
@@ -58,15 +59,16 @@ export function AdminLayout() {
     };
 
     return (
-        <div className="flex flex-col h-screen bg-gray-50">
+        <div className="flex flex-col h-screen bg-[#fcfcfc]">
             <Header />
             <div className="flex flex-1 overflow-hidden">
-                {/* Admin Sidebar */}
-                <aside className="hidden lg:flex w-64 flex-col border-r bg-white h-full">
-                    <div className="p-6 border-b">
-                        <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
-                            <LayoutDashboard className="w-6 h-6 text-[#a73f2b]" />
-                            Admin Panel
+                <aside className="hidden lg:flex w-72 flex-col border-r border-white/5 bg-[#1a1a1a] h-full shadow-2xl z-20 transition-all duration-300">
+                    <div className="p-8 border-b border-white/5 bg-[#1a1a1a]">
+                        <h2 className="text-xl font-bold text-white flex items-center gap-3 tracking-tight">
+                            <div className="p-2 rounded-xl bg-gradient-to-br from-[#a73f2b] to-[#b30452] shadow-lg shadow-[#b30452]/20">
+                                <LayoutDashboard className="w-5 h-5 text-white" />
+                            </div>
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">Admin Panel</span>
                         </h2>
                     </div>
 
@@ -74,11 +76,11 @@ export function AdminLayout() {
                         {menuItems.map((section, idx) => (
                             <div key={idx} className="px-4 mb-6">
                                 {section.title && (
-                                    <h4 className="text-xs font-semibold text-gray-400 mb-3 px-2 tracking-wider">
+                                    <h4 className="text-[10px] font-bold text-gray-500 mb-4 px-4 tracking-[0.2em] uppercase">
                                         {section.title}
                                     </h4>
                                 )}
-                                <div className="space-y-1">
+                                <div className="space-y-1.5 px-2">
                                     {section.items.map((item) => {
                                         const isActive = currentPath === item.id;
                                         return (
@@ -86,14 +88,34 @@ export function AdminLayout() {
                                                 key={item.id}
                                                 onClick={() => handleNavigate(item.id)}
                                                 className={cn(
-                                                    "w-full flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                                                    "w-full flex items-center gap-3.5 px-4 py-3 text-sm font-medium rounded-xl transition-all duration-300 group relative overflow-hidden",
                                                     isActive
-                                                        ? "bg-[#a73f2b]/10 text-[#a73f2b]"
-                                                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                                                        ? "text-white shadow-lg shadow-[#b30452]/25"
+                                                        : "text-gray-400 hover:text-white hover:bg-[#b30452]/15"
                                                 )}
                                             >
-                                                <item.icon className={cn("w-4 h-4", isActive ? "text-[#a73f2b]" : "text-gray-400")} />
-                                                {item.label}
+                                                {/* Active background gradient */}
+                                                {isActive && (
+                                                    <motion.div
+                                                        layoutId="activeTab"
+                                                        className="absolute inset-0 bg-gradient-to-r from-[#a73f2b] to-[#b30452] z-0"
+                                                        initial={{ opacity: 0 }}
+                                                        animate={{ opacity: 1 }}
+                                                        transition={{ duration: 0.3 }}
+                                                    />
+                                                )}
+                                                <item.icon className={cn(
+                                                    "w-5 h-5 relative z-10 transition-transform duration-300 group-hover:scale-110",
+                                                    isActive ? "text-white" : "text-gray-500 group-hover:text-white"
+                                                )} />
+                                                <span className="relative z-10">{item.label}</span>
+                                                {isActive && (
+                                                    <motion.div
+                                                        className="absolute right-0 w-1 h-6 bg-white rounded-l-full z-10"
+                                                        initial={{ opacity: 0, x: 10 }}
+                                                        animate={{ opacity: 1, x: 0 }}
+                                                    />
+                                                )}
                                             </button>
                                         );
                                     })}
@@ -102,17 +124,17 @@ export function AdminLayout() {
                         ))}
                     </div>
 
-                    <div className="p-4 border-t bg-gray-50">
+                    <div className="p-6 border-t border-white/5 bg-[#1a1a1a]">
                         <Button
                             variant="ghost"
-                            className="w-full justify-start gap-3 text-red-600 hover:text-red-700 hover:bg-red-50"
+                            className="w-full justify-start gap-4 text-gray-400 hover:text-red-400 hover:bg-red-500/10 rounded-xl px-4 py-6 transition-all duration-300 group"
                             onClick={() => {
                                 logout();
                                 navigate('/login');
                             }}
                         >
-                            <LogOut className="w-4 h-4" />
-                            Logout
+                            <LogOut className="w-5 h-5 transition-transform group-hover:rotate-12" />
+                            <span className="font-semibold text-sm">Logout Session</span>
                         </Button>
                     </div>
                 </aside>

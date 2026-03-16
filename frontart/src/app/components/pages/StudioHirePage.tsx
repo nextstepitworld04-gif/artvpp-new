@@ -389,7 +389,7 @@ export function StudioHirePage() {
             {(effectiveConfig.pricingOptions || []).map((option: any) => <span key={option.id} className="rounded-full bg-[#a73f2b]/14 border border-[#a73f2b]/25 px-4 py-2 text-sm text-[#f5e2a0]">{option.name}: Rs {Number(option.price || 0).toLocaleString()} / {option.billingUnit}</span>)}
           </div>
           {!!effectiveConfig.perfectFor?.length && <div className="mt-7 flex flex-wrap gap-2">{effectiveConfig.perfectFor.map((item: string, index: number) => <span key={index} className="rounded-full border border-white/12 bg-white/6 px-3 py-1.5 text-sm text-white/85">{item}</span>)}</div>}
-          <div className="mt-9"><a href="#booking" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#a73f2b] to-[#C9A858] px-8 py-4 text-black font-semibold">Book Now <ArrowRight className="w-5 h-5" /></a></div>
+          <div className="mt-9"><a href="#booking" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#a73f2b] to-[#b30452] hover:brightness-110 hover:shadow-[0px_6px_20px_rgba(179,4,82,0.35)] px-8 py-4 text-white font-semibold">Book Now <ArrowRight className="w-5 h-5" /></a></div>
           <div className="mt-10 grid md:grid-cols-3 gap-4">
             {/* Always show local studio image as main hero */}
             <img src={studioImg1} alt="Studio" className="md:col-span-2 h-72 md:h-96 w-full object-cover rounded-[24px] border border-white/10" />

@@ -27,125 +27,190 @@ export function LaunchOverlay({ onLaunch }: { onLaunch: () => void }) {
                 >
                     {/* Animated background particles */}
                     <div className="absolute inset-0 overflow-hidden">
-                        {Array.from({ length: 60 }).map((_, i) => (
+                        {Array.from({ length: 80 }).map((_, i) => (
                             <motion.div
                                 key={i}
                                 className="absolute w-1 h-1 rounded-full"
                                 style={{
-                                    background: i % 3 === 0 ? '#a73f2b' : i % 3 === 1 ? '#a73f2b' : 'rgba(255,255,255,0.3)',
+                                    background: i % 4 === 0 ? '#a73f2b' : i % 4 === 1 ? '#b30452' : i % 4 === 2 ? '#E8C84A' : 'rgba(255,255,255,0.4)',
                                     left: `${Math.random() * 100}%`,
                                     top: `${Math.random() * 100}%`,
                                 }}
                                 animate={{
-                                    y: [0, -30, 0],
-                                    opacity: [0.2, 0.8, 0.2],
-                                    scale: [1, 1.5, 1],
+                                    y: [0, -50, 0],
+                                    x: [0, Math.random() * 20 - 10, 0],
+                                    opacity: [0.1, 0.6, 0.1],
+                                    scale: [1, 2, 1],
                                 }}
                                 transition={{
-                                    duration: 3 + Math.random() * 4,
+                                    duration: 4 + Math.random() * 6,
                                     repeat: Infinity,
-                                    delay: Math.random() * 3,
+                                    delay: Math.random() * 5,
                                     ease: 'easeInOut',
                                 }}
                             />
                         ))}
                     </div>
 
+                    {/* Ambient light effects */}
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                        <motion.div
+                            className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full opacity-20 blur-[120px]"
+                            style={{ background: 'radial-gradient(circle, #a73f2b 0%, transparent 70%)' }}
+                            animate={{
+                                scale: [1, 1.2, 1],
+                                x: [0, 30, 0],
+                                y: [0, 20, 0],
+                            }}
+                            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+                        />
+                        <motion.div
+                            className="absolute -bottom-[20%] -right-[10%] w-[60%] h-[60%] rounded-full opacity-20 blur-[120px]"
+                            style={{ background: 'radial-gradient(circle, #b30452 0%, transparent 70%)' }}
+                            animate={{
+                                scale: [1.2, 1, 1.2],
+                                x: [0, -30, 0],
+                                y: [0, -20, 0],
+                            }}
+                            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+                        />
+                    </div>
+
                     {/* Glowing ring behind logo */}
                     <motion.div
-                        className="absolute rounded-full"
+                        className="absolute rounded-full border border-white/5"
                         style={{
-                            width: 320,
-                            height: 320,
-                            background: 'radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%)',
+                            width: 380,
+                            height: 380,
+                            background: 'radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 75%)',
                         }}
                         animate={{
-                            scale: [1, 1.2, 1],
-                            opacity: [0.5, 0.8, 0.5],
+                            scale: [1, 1.15, 1],
+                            opacity: [0.3, 0.6, 0.3],
+                            rotate: [0, 360],
                         }}
-                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                        transition={{
+                            scale: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
+                            opacity: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
+                            rotate: { duration: 25, repeat: Infinity, ease: 'linear' }
+                        }}
                     />
 
-                    {/* Logo */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
-                        className="relative z-10 mb-8"
-                    >
-                        <img
-                            src={logo}
-                            alt="ArtVPP"
-                            className="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-2xl"
-                        />
-                    </motion.div>
-
-                    {/* Title */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        className="relative z-10 text-center mb-4"
-                    >
-                        <h1 className="text-5xl md:text-2xl lg:text-2xl font-light tracking-[0.2em] text-white" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                            ART<span className="text-[#a73f2b] font-bold">VPP</span>
-                        </h1>
-                    </motion.div>
-
-                    {/* Tagline */}
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.7 }}
-                        className="relative z-10 text-base md:text-lg tracking-[0.4em] text-white/60 uppercase mb-16 text-center px-4"
-                    >
-                        Where Art Meets Freedom
-                    </motion.p>
-
-                    {/* Launch Button */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: 1.2 }}
-                        className="relative z-10"
-                    >
-                        {/* Pulsing ring around button */}
+                    {/* Logo Section */}
+                    <div className="relative z-10 flex flex-col items-center">
                         <motion.div
-                            className="absolute inset-0 rounded-full border-2 border-[#a73f2b]"
-                            animate={{
-                                scale: [1, 1.3, 1],
-                                opacity: [0.6, 0, 0.6],
+                            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            transition={{
+                                duration: 1.5,
+                                ease: [0.16, 1, 0.3, 1],
                             }}
-                            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                            style={{ margin: -12 }}
-                        />
-                        <motion.div
-                            className="absolute inset-0 rounded-full border border-[#a73f2b]/40"
-                            animate={{
-                                scale: [1, 1.6, 1],
-                                opacity: [0.3, 0, 0.3],
-                            }}
-                            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                            style={{ margin: -20 }}
-                        />
-
-                        <button
-                            onClick={handleLaunch}
-                            className="relative px-14 py-5 md:px-20 md:py-6 bg-gradient-to-r from-[#a73f2b] via-[#E8C84A] to-[#a73f2b] text-black font-bold text-lg md:text-xl tracking-[0.25em] uppercase rounded-full shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)] transition-all duration-500 hover:scale-105 active:scale-95 cursor-pointer"
+                            className="mb-10"
                         >
-                            🚀 LAUNCH WEBSITE
-                        </button>
-                    </motion.div>
+                            <motion.div
+                                animate={{
+                                    y: [0, -10, 0],
+                                }}
+                                transition={{
+                                    duration: 4,
+                                    repeat: Infinity,
+                                    ease: 'easeInOut',
+                                }}
+                            >
+                                <img
+                                    src={logo}
+                                    alt="ArtVPP"
+                                    className="w-36 h-36 md:w-48 md:h-48 object-contain drop-shadow-[0_0_30px_rgba(232,200,74,0.3)] filter contrast-110"
+                                />
+                            </motion.div>
+                        </motion.div>
+
+                        {/* Title */}
+                        <motion.div
+                            initial={{ opacity: 0, letterSpacing: '0.4em' }}
+                            animate={{ opacity: 1, letterSpacing: '0.25em' }}
+                            transition={{ duration: 2, delay: 0.5, ease: 'easeOut' }}
+                            className="text-center mb-6"
+                        >
+                            <h1 className="text-6xl md:text-7xl font-light text-white overflow-hidden" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                                <motion.span
+                                    initial={{ y: "100%" }}
+                                    animate={{ y: 0 }}
+                                    transition={{ duration: 1, delay: 0.8 }}
+                                    className="inline-block"
+                                >
+                                    ART<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a73f2b] to-[#b30452] font-bold">VPP</span>
+                                </motion.span>
+                            </h1>
+                        </motion.div>
+
+                        {/* Tagline */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1.5, delay: 1.5 }}
+                            className="mb-20 text-center"
+                        >
+                            <span className="text-sm md:text-base tracking-[0.6em] text-white/40 uppercase font-light">
+                                Where Art Meets Freedom
+                            </span>
+                            <motion.div
+                                className="h-[1px] w-24 bg-gradient-to-r from-transparent via-[#a73f2b]/50 to-transparent mx-auto mt-4"
+                                initial={{ scaleX: 0 }}
+                                animate={{ scaleX: 1 }}
+                                transition={{ duration: 1.5, delay: 2 }}
+                            />
+                        </motion.div>
+
+                        {/* Launch Button */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1, delay: 2.2 }}
+                            className="relative group"
+                        >
+                            {/* Animated background glow for button */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#a73f2b] to-[#b30452] rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+
+                            <motion.button
+                                onClick={handleLaunch}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="relative px-16 py-5 bg-white text-black font-bold text-lg tracking-[0.3em] uppercase rounded-full overflow-hidden transition-all duration-300"
+                            >
+                                <span className="relative z-10">Launch Gallery</span>
+                                <motion.div
+                                    className="absolute inset-0 bg-gradient-to-r from-neutral-100 to-white"
+                                />
+                                {/* Shiny effect on hover */}
+                                <motion.div
+                                    className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/80 to-transparent skew-x-[-25deg] z-20"
+                                    animate={{ left: ['-100%', '200%'] }}
+                                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 3, ease: 'easeInOut' }}
+                                />
+                            </motion.button>
+
+                            {/* Ornamental rings */}
+                            <motion.div
+                                className="absolute -inset-4 rounded-full border border-[#a73f2b]/20"
+                                animate={{ rotate: 360, scale: [1, 1.05, 1] }}
+                                transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+                            />
+                        </motion.div>
+                    </div>
 
                     {/* Bottom decorative text */}
-                    <motion.p
+                    <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 1.8, duration: 1 }}
-                        className="absolute bottom-8 text-white/30 text-xs tracking-[0.3em] uppercase z-10"
+                        transition={{ delay: 3, duration: 1.5 }}
+                        className="absolute bottom-12 flex flex-col items-center gap-4 z-10"
                     >
-                        Empowering Artists Worldwide
-                    </motion.p>
+                        <p className="text-white/20 text-[10px] tracking-[0.5em] uppercase">
+                            Digital Art Marketplace • Est. 2024
+                        </p>
+                        <div className="w-1 h-12 bg-gradient-to-b from-white/20 to-transparent" />
+                    </motion.div>
                 </motion.div>
             ) : (
                 /* Launch Animation */

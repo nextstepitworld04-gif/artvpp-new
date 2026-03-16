@@ -144,7 +144,7 @@ export function ProductCategoryPage() {
               <div className="flex items-center justify-between mb-5">
                 <h3 className="font-semibold text-gray-900 text-base" style={{ fontFamily: 'Poppins, sans-serif' }}>Filters</h3>
                 {(selectedCategories.length > 0 || priceRange[0] > 0 || priceRange[1] < 50000) && (
-                  <button onClick={clearFilters} className="text-xs text-[#a73f2b] hover:underline font-medium">
+                  <button onClick={clearFilters} className="text-xs text-[#b30452] hover:underline font-medium">
                     Clear All
                   </button>
                 )}
@@ -178,8 +178,8 @@ export function ProductCategoryPage() {
                   {availableCategories.map(cat => (
                     <label key={cat} className="flex items-center gap-2.5 cursor-pointer group">
                       <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all duration-200 ${selectedCategories.includes(cat)
-                          ? 'bg-gradient-to-r from-[#a73f2b] to-[#b30452] border-[#a73f2b]'
-                          : 'border-gray-300 group-hover:border-[#a73f2b]'
+                        ? 'bg-gradient-to-r from-[#a73f2b] to-[#b30452] border-[#a73f2b]'
+                        : 'border-gray-300 group-hover:border-[#a73f2b]'
                         }`}>
                         {selectedCategories.includes(cat) && <span className="text-white text-[9px] font-bold">✓</span>}
                       </div>
@@ -282,7 +282,7 @@ export function ProductCategoryPage() {
                       <div className="p-4 flex flex-col justify-between flex-1">
                         <div>
                           <p className="text-xs text-gray-500 mb-0.5">{product.artist}</p>
-                          <h3 className="text-base font-semibold text-gray-900 cursor-pointer hover:text-[#a73f2b] line-clamp-1" style={{ fontFamily: 'Inter, sans-serif' }} onClick={() => navigate(`/product/${product.slug || product.id}`)}>
+                          <h3 className="text-base font-semibold text-gray-900 cursor-pointer hover:text-[#b30452] line-clamp-1" style={{ fontFamily: 'Inter, sans-serif' }} onClick={() => navigate(`/product/${product.slug || product.id}`)}>
                             {product.title}
                           </h3>
                           <div className="mt-1 flex gap-2 items-center">
@@ -295,8 +295,7 @@ export function ProductCategoryPage() {
                         <div className="flex items-center justify-between mt-3">
                           <span className="text-lg font-bold text-gray-900">₹{product.price.toLocaleString('en-IN')}</span>
                           <Button
-                            className="text-white h-8 px-4 text-xs font-semibold rounded-lg border-0"
-                            style={{ background: '#a73f2b' }}
+                            className="bg-gradient-to-r from-[#a73f2b] to-[#b30452] text-white h-8 px-4 text-xs font-semibold rounded-lg border-0 shadow-sm hover:shadow-[#b30452]/20 transition-all duration-300"
                             onClick={() => handleAddToCart(product)}
                           >
                             Add to Cart

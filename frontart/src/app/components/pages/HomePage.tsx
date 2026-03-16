@@ -128,28 +128,28 @@ export function HomePage() {
                 </span>
               </motion.div>
 
-              {/* Main Heading improved visibility */}
-              <motion.div variants={fadeIn} className="mb-2">
-                <h1 className="text-4xl sm:text-6xl lg:text-[72px] font-bold text-white tracking-tight leading-[1.1] drop-shadow-lg" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              {/* Main Heading improved visibility and responsiveness */}
+              <motion.div variants={fadeIn} className="mb-2 w-full">
+                <h1 className="text-3xl sm:text-5xl lg:text-[72px] font-bold text-white tracking-tight leading-[1.2] lg:leading-[1.1] drop-shadow-lg" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   Your ART deserves
                 </h1>
               </motion.div>
 
-              <motion.div variants={fadeIn} className="mb-6">
-                <h2 className="text-4xl sm:text-6xl lg:text-[72px] font-bold text-white tracking-tight leading-[1.1] drop-shadow-lg" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <motion.div variants={fadeIn} className="mb-6 w-full">
+                <h2 className="text-3xl sm:text-5xl lg:text-[72px] font-bold text-white tracking-tight leading-[1.2] lg:leading-[1.1] drop-shadow-lg" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   Freedom Upload Free on
                 </h2>
               </motion.div>
               <motion.div variants={fadeIn} className="mb-6 px-4 text-center">
                 <span
-                  className="text-6xl sm:text-8xl lg:text-[96px] font-extrabold tracking-tight inline-block px-4"
+                  className="text-5xl sm:text-8xl lg:text-[96px] font-extrabold tracking-tight inline-block px-4"
                   style={{
-                    background: "linear-gradient(to right, #eeab3e, #e24a36ff, #d64eb4ff)",
+                    background: "linear-gradient(to right, #fdbc5aff, #fc5522ff, #f345c7ff)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     filter: "drop-shadow(2px 2px 14px rgba(0,0,0,0.35))",
                     fontFamily: "Calibri, 'Segoe UI', Arial, sans-serif",
-                    lineHeight: "1",
+                    lineHeight: "1.2",
                     letterSpacing: "-1px",
                     fontWeight: "900"
                   }}
@@ -162,7 +162,7 @@ export function HomePage() {
                 <Button
                   size="lg"
                   onClick={() => navigate('/marketplace')}
-                  className="bg-gradient-to-r from-[#FF5F6D] to-[#FFC371] hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-white px-12 py-7 text-xl rounded-2xl font-bold border-0"
+                  className="bg-gradient-to-r from-[#a73f2b] to-[#b30452] hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-white px-8 sm:px-12 py-5 sm:py-7 text-lg sm:text-xl rounded-2xl font-bold border-0 shadow-lg shadow-[#b30452]/20"
                 >
                   Explore Products
                 </Button>
@@ -170,7 +170,7 @@ export function HomePage() {
                   size="lg"
                   variant="outline"
                   onClick={() => navigate('/marketplace')}
-                  className="bg-white/10 backdrop-blur-md border-2 border-white/20 text-white hover:bg-white hover:text-black px-12 py-7 text-xl rounded-2xl font-bold shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  className="bg-white/10 backdrop-blur-md border-2 border-white/20 text-white hover:bg-white hover:text-black px-8 sm:px-12 py-5 sm:py-7 text-lg sm:text-xl rounded-2xl font-bold shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
                   Our Artworks
                 </Button>
@@ -210,87 +210,86 @@ export function HomePage() {
       )}
 
       {/* Featured Collection */}
-      <section className="py-24 bg-[#F8F9FB]">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-white">
+        <div className="max-w-[1200px] mx-auto px-4">
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={stagger}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
           >
-            <motion.div variants={fadeIn} className="text-center mb-12">
-              <h2 className="text-4xl mb-3 font-semibold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif', letterSpacing: '-0.3px' }}>
-                Featured Collection
-              </h2>
-              <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">
-                Discover masterpieces handpicked by our curators
-              </p>
-            </motion.div>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
+              Featured Collection
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#a73f2b] to-[#b30452] mx-auto mb-6 rounded-full" />
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              Discover our hand-picked selection of premium artworks from top Indian artists.
+            </p>
+          </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {featuredArtworks.length === 0 ? (
-                // Loading skeleton
-                Array.from({ length: 4 }).map((_, i) => (
-                  <div key={i} className="animate-pulse">
-                    <div className="aspect-[3/4] bg-gray-200 rounded-xl mb-4" />
-                    <div className="h-5 bg-gray-200 rounded w-3/4 mb-2" />
-                    <div className="h-4 bg-gray-200 rounded w-1/2 mb-2" />
-                    <div className="h-6 bg-gray-200 rounded w-1/3" />
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-8">
+            {featuredArtworks.length === 0 ? (
+              // Loading skeleton
+              Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} className="animate-pulse w-full">
+                  <div className="aspect-[3/4] bg-gray-200 rounded-xl mb-4" />
+                  <div className="h-5 bg-gray-200 rounded w-3/4 mb-2" />
+                  <div className="h-4 bg-gray-200 rounded w-1/2 mb-2" />
+                  <div className="h-6 bg-gray-200 rounded w-1/3" />
+                </div>
+              ))
+            ) : (
+              featuredArtworks.map((artwork, index) => (
+                <motion.div
+                  key={artwork.id}
+                  variants={fadeIn}
+                  whileHover={{ y: -10 }}
+                  onClick={() => navigate(`/product/${artwork.id}`)}
+                  className="group cursor-pointer w-full"
+                >
+                  <div className="relative aspect-[3/4] overflow-hidden bg-white mb-4 rounded-[12px] shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex items-center justify-center">
+                    <img
+                      src={artwork.image}
+                      alt={artwork.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
+
+                    {/* Quick Actions */}
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <button className="bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors">
+                        <Heart className="w-5 h-5 text-gray-900" />
+                      </button>
+                    </div>
                   </div>
-                ))
-              ) : (
-                featuredArtworks.map((artwork, index) => (
-                  <motion.div
-                    key={artwork.id}
-                    variants={fadeIn}
-                    whileHover={{ y: -10 }}
-                    onClick={() => navigate(`/product/${artwork.id}`)}
-                    className="group cursor-pointer"
-                  >
-                    <div className="relative aspect-[3/4] overflow-hidden bg-white mb-4 rounded-xl shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex items-center justify-center">
-                      <img
-                        src={artwork.image}
-                        alt={artwork.title}
-                        className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
 
-                      {/* Quick Actions */}
-                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <button className="bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors">
-                          <Heart className="w-5 h-5 text-gray-900" />
-                        </button>
-                      </div>
+                  <div className="space-y-1.5 px-1">
+                    <h3 className="text-base font-semibold text-gray-900 group-hover:text-[#b30452] transition-colors line-clamp-1" style={{ fontFamily: 'Inter, sans-serif' }}>
+                      {artwork.title}
+                    </h3>
+                    <p className="text-xs text-gray-500 font-medium">{artwork.artist}</p>
+                    <div className="flex items-center justify-between pt-1">
+                      <span className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Inter, sans-serif' }}>
+                        ₹{artwork.price.toLocaleString()}
+                      </span>
+                      <span className="text-xs text-gray-400 capitalize bg-gray-100 px-1.5 py-0.5 rounded">{artwork.medium}</span>
                     </div>
+                  </div>
+                </motion.div>
+              ))
+            )}
+          </div>
 
-                    <div className="space-y-1.5 px-1">
-                      <h3 className="text-base font-semibold text-gray-900 group-hover:text-[#b30452] transition-colors line-clamp-1" style={{ fontFamily: 'Inter, sans-serif' }}>
-                        {artwork.title}
-                      </h3>
-                      <p className="text-xs text-gray-500 font-medium">{artwork.artist}</p>
-                      <div className="flex items-center justify-between pt-1">
-                        <span className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Inter, sans-serif' }}>
-                          ₹{artwork.price.toLocaleString()}
-                        </span>
-                        <span className="text-xs text-gray-400 capitalize bg-gray-100 px-1.5 py-0.5 rounded">{artwork.medium}</span>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))
-              )}
-            </div>
-
-            <motion.div variants={fadeIn} className="text-center mt-16">
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => navigate('/marketplace')}
-                className="border border-gray-200 bg-white text-gray-900 hover:bg-gray-50 px-12 py-6 text-base rounded-[10px] font-medium tracking-wide shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-250"
-              >
-                VIEW ALL ARTWORKS
-                <ArrowRight className="ml-3 h-5 w-5" />
-              </Button>
-            </motion.div>
+          <motion.div variants={fadeIn} className="text-center mt-16">
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={() => navigate('/marketplace')}
+              className="border border-gray-200 bg-white text-gray-900 hover:bg-gray-50 px-12 py-6 text-base rounded-[10px] font-medium tracking-wide shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-250"
+            >
+              VIEW ALL ARTWORKS
+              <ArrowRight className="ml-3 h-5 w-5" />
+            </Button>
           </motion.div>
         </div>
       </section>
@@ -324,19 +323,19 @@ export function HomePage() {
                 {
                   name: 'Digital Art',
                   subtitle: 'Instant downloads',
-                  image: 'https://images.unsplash.com/photo-1768464706302-4876d5be12f2?w=900',
+                  image: 'https://vac3.sgp1.digitaloceanspaces.com/wp-content/uploads/2023/05/06162238/176937-1536x864.webp?w=900',
                   onClick: () => navigate('/marketplace')
                 },
                 {
                   name: 'Custom Services',
                   subtitle: 'Commissions & more',
-                  image: 'https://images.unsplash.com/photo-1760764541302-e3955fbc6b2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=900',
+                  image: 'https://5.imimg.com/data5/SELLER/Default/2023/2/YE/UO/VJ/9107407/beautiful-abstract-frameless-wall-painting-for-home-springfield-500x500.jpg?v=165448385&w=900',
                   onClick: () => navigate('/services')
                 },
                 {
                   name: 'Learn',
                   subtitle: 'Workshops & courses',
-                  image: 'https://images.unsplash.com/photo-1526498460520-4c246339dccb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=900',
+                  image: 'https://t4.ftcdn.net/jpg/04/48/77/29/360_F_448772985_m27ElmCFlqzL7d7tfwlSRNpnU6k7MA7l.jpg?w=900',
                   onClick: () => navigate('/services')
                 }
               ].map((category) => (
@@ -373,7 +372,7 @@ export function HomePage() {
       </section>
 
       {/* Artist Spotlight - Full Width */}
-      <section className="py-0 bg-[#F8F9FB]">
+      <section className="py-0 bg-[#F8F9FB]" >
         <div className="grid lg:grid-cols-2">
           {/* Image */}
           <motion.div
@@ -419,7 +418,7 @@ export function HomePage() {
                   { title: 'Full Support', desc: 'Marketing, logistics, and customer service handled' }
                 ].map((feature, index) => (
                   <div key={index} className="flex items-start gap-4">
-                    <div className="w-2 h-2 bg-[#8B3A3A] hover:bg-[#7A2F2F] rounded-full mt-2" />
+                    <div className="w-2 h-2 bg-[#b30452] hover:bg-[#a73f2b] rounded-full mt-2" />
                     <div>
                       <h4 className="font-medium text-gray-900 mb-1">{feature.title}</h4>
                       <p className="text-sm text-gray-600 font-light">{feature.desc}</p>
@@ -452,7 +451,7 @@ export function HomePage() {
       </section>
 
       {/* Featured Artists */}
-      <section className="py-24 bg-[#F8F9FB]">
+      <section className="py-24 bg-[#F8F9FB]" >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -504,7 +503,7 @@ export function HomePage() {
                   <Button
                     variant="ghost"
                     onClick={() => handleViewPortfolio(artist.id)}
-                    className="text-slate-900 hover:text-transparent hover:bg-transparent font-medium rounded-full hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#a73f2b] hover:to-[#b30452]"
+                    className="text-slate-900 hover:text-white font-medium rounded-full hover:bg-gradient-to-r hover:from-[#a73f2b] hover:to-[#b30452] px-6 py-2 transition-all duration-300"
                   >
                     View Portfolio
                     <ChevronRight className="ml-2 h-4 w-4" />
@@ -517,7 +516,7 @@ export function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-[#F8F9FB]">
+      <section className="py-24 bg-[#F8F9FB]" >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -594,7 +593,7 @@ export function HomePage() {
       </section>
 
       {/* Why Choose Artvpp */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white" >
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -665,7 +664,7 @@ export function HomePage() {
 
 
       {/* Ready to Start CTA - full width above footer */}
-      <section className="relative py-20 text-white overflow-hidden">
+      <section className="relative py-20 text-white overflow-hidden" >
         <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#a73f2b] to-[#b30452] opacity-95" />
         <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.5),_transparent_55%)]" />
 
@@ -714,7 +713,8 @@ export function HomePage() {
       </section>
 
       {/* Artist Portfolio Dialog */}
-      <Dialog open={!!selectedArtist} onOpenChange={(open) => !open && setSelectedArtist(null)}>
+      < Dialog open={!!selectedArtist
+      } onOpenChange={(open) => !open && setSelectedArtist(null)}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           {selectedArtist && (
             <>
@@ -723,7 +723,7 @@ export function HomePage() {
                   <img
                     src={selectedArtist.avatar}
                     alt={selectedArtist.name}
-                    className="w-20 h-20 rounded-full object-cover border-2 border-[#8B3A3A]"
+                    className="w-20 h-20 rounded-full object-cover border-2 border-[#b30452]"
                   />
                   <div>
                     <DialogTitle className="text-3xl font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
@@ -733,7 +733,7 @@ export function HomePage() {
                       {selectedArtist.specialty}
                     </DialogDescription>
                     {selectedArtist.verified && (
-                      <Badge className="mt-2 bg-[#8B3A3A] hover:bg-[#7A2F2F] text-white border-0">
+                      <Badge className="mt-2 bg-[#b30452] hover:bg-[#a73f2b] text-white border-0">
                         Verified Artist
                       </Badge>
                     )}
@@ -749,16 +749,16 @@ export function HomePage() {
 
                 <div className="flex items-center gap-8 py-6 border-y">
                   <div>
-                    <p className="text-3xl font-light text-[#8B3A3A]">{selectedArtist.artworks}</p>
+                    <p className="text-3xl font-light text-[#b30452]">{selectedArtist.artworks}</p>
                     <p className="text-sm text-gray-600">Artworks Created</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-light text-[#8B3A3A]">{selectedArtist.followers}</p>
+                    <p className="text-3xl font-light text-[#b30452]">{selectedArtist.followers}</p>
                     <p className="text-sm text-gray-600">Followers</p>
                   </div>
                   <div>
                     <div className="flex items-center gap-1">
-                      <Star className="w-5 h-5 fill-[#8B3A3A] text-[#8B3A3A]" />
+                      <Star className="w-5 h-5 fill-[#b30452] text-[#b30452]" />
                       <span className="text-3xl font-light">4.9</span>
                     </div>
                     <p className="text-sm text-gray-600">Average Rating</p>

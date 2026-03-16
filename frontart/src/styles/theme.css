@@ -279,4 +279,28 @@
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
   }
+
+  /* Global Image Responsiveness */
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Responsive Typography Base Scaling */
+  html {
+    font-size: 14px;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 15px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 16px;
+    }
+  }
 }

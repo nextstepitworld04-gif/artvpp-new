@@ -261,8 +261,7 @@ export function RegisterPage() {
 
               <Button
                 type="submit"
-                className="w-full text-white rounded-[10px] shadow-md hover:shadow-lg transition-all duration-250 py-6 text-base mt-4 border-0 font-semibold tracking-wide"
-                style={{ background: 'linear-gradient(135deg, #ff512f, #dd2476)' }}
+                className="w-full text-white rounded-[10px] shadow-md hover:shadow-lg transition-all duration-250 py-6 text-base mt-4 border-0 font-semibold tracking-wide bg-gradient-to-r from-[#a73f2b] to-[#b30452] hover:brightness-110 hover:shadow-[0px_6px_20px_rgba(179,4,82,0.35)]"
                 size="lg"
                 disabled={isLoading}
               >

@@ -86,8 +86,8 @@ const PLATFORM_SERVICES = [
 export function ServicesPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [services, setServices] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [services, setServices] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
   const [platformConfigs, setPlatformConfigs] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -209,7 +209,7 @@ export function ServicesPage() {
                 onClick={() => handleServiceClick(service)}
                 className="cursor-pointer group"
               >
-                <Card className="overflow-hidden border border-[#E5E7EB] shadow-sm hover:shadow-md transition-transform h-full relative rounded-[10px]">
+                <Card className="overflow-hidden border-0 shadow-[0_6px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)] transition-all duration-300 h-full relative rounded-2xl bg-white group-hover:ring-1 group-hover:ring-[#b30452]/20">
                   {/* Image */}
                   <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative">
                     <img
@@ -232,13 +232,13 @@ export function ServicesPage() {
 
                     {/* Icon overlay */}
                     <div className="absolute bottom-3 left-3">
-                      <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-[#4F46E5] shadow-md">
+                      <div className="w-11 h-11 rounded-full bg-gradient-to-r from-[#a73f2b] to-[#b30452] flex items-center justify-center text-white shadow-lg transform group-hover:scale-110 transition-transform duration-300">
                         {service.icon}
                       </div>
                     </div>
                   </div>
 
-                    <CardContent className="p-5">
+                  <CardContent className="p-5">
                     <h3 className="text-lg font-semibold text-[#111827] mb-1.5 group-hover:text-[#4F46E5] transition-colors">
                       {service.configKey ? (platformConfigs?.[service.configKey]?.title || service.title) : service.title}
                     </h3>
@@ -247,7 +247,7 @@ export function ServicesPage() {
                     </p>
 
                     {service.available && (
-                      <div className="mt-4 flex items-center text-sm font-medium text-[#a73f2b] group-hover:gap-2 transition-all">
+                      <div className="mt-4 flex items-center text-sm font-semibold text-[#b30452] group-hover:gap-2 transition-all">
                         View Details <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                       </div>
                     )}
@@ -269,7 +269,7 @@ export function ServicesPage() {
               viewport={{ once: true }}
               className="text-center mb-14"
             >
-            <h2 className="text-3xl md:text-4xl font-semibold text-[#111827] mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
+              <h2 className="text-3xl md:text-4xl font-semibold text-[#111827] mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
                 Artist Services
               </h2>
               <p className="text-gray-600 font-light max-w-xl mx-auto">
@@ -317,7 +317,7 @@ export function ServicesPage() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="overflow-hidden border border-[#E5E7EB] shadow-sm hover:shadow-md transition-transform h-full group bg-white rounded-[10px]">
+                  <Card className="overflow-hidden border-0 shadow-[0_6px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)] transition-all duration-300 h-full group bg-white rounded-2xl group-hover:ring-1 group-hover:ring-[#b30452]/20">
                     <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative">
                       <img
                         src={service.images?.[0]?.url || '/placeholder.jpg'}

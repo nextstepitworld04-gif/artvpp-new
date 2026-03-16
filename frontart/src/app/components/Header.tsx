@@ -243,8 +243,8 @@ export function Header() {
                   </button>
                   <Button
                     onClick={() => navigate('/login')}
-                    className="text-white px-5 py-2 text-xs lg:text-sm font-semibold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-250 border-0"
-                    style={{ background: 'linear-gradient(135deg, #ff512f, #dd2476)', borderRadius: '10px' }}
+                    className="text-white px-5 py-2 text-xs lg:text-sm font-semibold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-250 border-0 bg-gradient-to-r from-[#a73f2b] to-[#b30452] hover:brightness-110 hover:shadow-[0px_6px_20px_rgba(179,4,82,0.35)]"
+                    style={{ borderRadius: '10px' }}
                   >
                     Login / signup
                   </Button>

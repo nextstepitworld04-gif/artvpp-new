@@ -147,7 +147,7 @@ export function ProductCard({ product, onViewDetails, onAddToCart }: ProductCard
               {product.artistAvatar ? (
                 <img src={product.artistAvatar} alt={product.artist || 'Artist'} className="w-full h-full object-cover" />
               ) : (
-                <div className="w-full h-full bg-[#a73f2b]/20 flex items-center justify-center text-[8px] text-[#a73f2b] font-semibold">
+                <div className="w-full h-full bg-[#b30452]/10 flex items-center justify-center text-[8px] text-[#b30452] font-semibold">
                   {(product.artist || 'A').charAt(0).toUpperCase()}
                 </div>
               )}
@@ -155,7 +155,7 @@ export function ProductCard({ product, onViewDetails, onAddToCart }: ProductCard
             <p className="text-[11px] text-gray-500 truncate font-medium">{product.artist || 'Unknown Artist'}</p>
           </div>
 
-          <h3 className="line-clamp-1 text-gray-900 group-hover:text-[#a73f2b] transition-colors font-medium text-sm mb-1 leading-snug" style={{ fontFamily: 'Inter, sans-serif' }}>
+          <h3 className="line-clamp-1 text-gray-900 group-hover:text-[#b30452] transition-colors font-medium text-sm mb-1 leading-snug" style={{ fontFamily: 'Inter, sans-serif' }}>
             {product.title}
           </h3>
 
