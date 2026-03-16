@@ -35,7 +35,8 @@ const PORT = process.env.PORT || 5000;
 // CORS - Only allow requests from your frontend domains
 const defaultDevOrigins = [
     "http://localhost:5173",
-    "http://127.0.0.1:5173"
+    "http://127.0.0.1:5173",
+    "https://artvpp-new.vercel.app"
 ];
 
 const allowedOrigins = [
