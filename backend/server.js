@@ -36,7 +36,7 @@ const PORT = process.env.PORT || 5000;
 const defaultDevOrigins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://artvpp-new.vercel.app"
+    "https://artvpp-new-seven.vercel.app"
 ];
 
 const allowedOrigins = [
