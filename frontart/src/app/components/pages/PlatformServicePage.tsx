@@ -9,6 +9,7 @@ import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Textarea } from '../ui/textarea';
 import { adminUpdatePlatformServiceConfig, adminUploadPlatformServiceImages, bookPlatformService, getPlatformServiceConfig } from '../../utils/api';
+import { motion } from 'motion/react';
 
 const DEFAULT_CONFIG: any = {
   serviceName: '',
@@ -91,10 +92,10 @@ const clearCacheValue = (key: string) => {
 
 function EditorImagePreview({ url, alt }: { url?: string; alt: string }) {
   if (!clean(url)) {
-    return <div className="h-24 rounded-xl border border-dashed border-[#d9cfbf] bg-[#faf6ef]" />;
+    return <div className="h-[120px] rounded-[10px] border border-dashed border-[#d9cfbf] bg-[#faf6ef]" />;
   }
 
-  return <img src={url} alt={alt} className="h-24 w-full rounded-xl border border-[#e7dfd1] object-cover" />;
+  return <img src={url} alt={alt} className="h-[120px] w-full rounded-[10px] border border-[#eee] object-cover" />;
 }
 
 async function uploadSingleImage(
@@ -329,15 +330,15 @@ export function PlatformServicePage({
 
                 <div className="rounded-xl border border-[#e7dfd1] bg-white p-4 space-y-3">
                   <div className="flex items-center justify-between"><Label>Gallery Images</Label></div>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-[14px]">
                     {(draft.galleryImages || []).map((img: any, index: number) => (
-                      <div key={index} className="space-y-2">
+                      <div key={index} className="p-[10px] bg-[#fafafa] rounded-[10px] space-y-2 border border-[#eee]">
                         <EditorImagePreview url={img?.url} alt={`Gallery image ${index + 1}`} />
-                        <Button type="button" variant="outline" className="w-full" onClick={() => setDraft((prev: any) => ({ ...prev, galleryImages: prev.galleryImages.filter((_: any, itemIndex: number) => itemIndex !== index) }))}>Remove</Button>
+                        <Button type="button" variant="ghost" size="sm" className="w-full text-red-500 hover:text-red-600 hover:bg-red-50 h-8" onClick={() => setDraft((prev: any) => ({ ...prev, galleryImages: prev.galleryImages.filter((_: any, itemIndex: number) => itemIndex !== index) }))}>Remove</Button>
                       </div>
                     ))}
                   </div>
-                  <label className="inline-flex items-center justify-center rounded-md border border-input px-3 py-2 text-sm cursor-pointer w-fit">
+                  <label className="inline-flex items-center justify-center rounded-md border border-input px-3 py-2 text-sm font-medium cursor-pointer w-fit hover:bg-gray-50 transition-colors">
                     Upload Gallery Images
                     <input type="file" accept="image/*" multiple className="hidden" onChange={async (e) => { try { setUploading(true); const images = await uploadImages(e.target.files); if (images.length) setDraft((prev: any) => ({ ...prev, galleryImages: [...(prev.galleryImages || []), ...images] })); } catch (error: any) { toast.error(error?.message || 'Gallery upload failed'); } finally { setUploading(false); e.target.value = ''; } }} />
                   </label>
@@ -433,7 +434,32 @@ export function PlatformServicePage({
         </div>
       </section>
 
-      {!!effectiveConfig.galleryImages?.length && <section className="py-14 bg-white"><div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8"><h2 className="text-3xl md:text-4xl font-light text-[#221819] mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>Portfolio</h2><div className="grid grid-cols-2 md:grid-cols-4 gap-4">{effectiveConfig.galleryImages.map((image: any, index: number) => <img key={index} src={image.url} alt={`Gallery ${index + 1}`} className={`${index === 0 ? 'md:col-span-2 h-72' : 'h-40'} w-full object-cover rounded-[22px] border border-[#e7dfd1]`} />)}</div></div></section>}
+      {!!effectiveConfig.galleryImages?.length && (
+        <section className="py-[60px] px-5 bg-white">
+          <div className="max-w-[1400px] mx-auto">
+            <h2 className="text-[28px] font-semibold text-[#221819] mb-[24px]" style={{ fontFamily: 'Playfair Display, serif' }}>
+              Portfolio
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
+              {effectiveConfig.galleryImages.map((image: any, index: number) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ translateY: -4 }}
+                  className="bg-white rounded-[14px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.08)] transition-all duration-300"
+                >
+                  <div className="aspect-[4/3] overflow-hidden rounded-[12px] m-1">
+                    <img
+                      src={image.url}
+                      alt={`Gallery ${index + 1}`}
+                      className="w-full h-[220px] object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {!!effectiveConfig.whatWeOffer?.length && <section className="py-16 bg-white"><div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8"><h2 className="text-4xl font-light text-[#221819] text-center mb-10" style={{ fontFamily: 'Playfair Display, serif' }}>What We Offer</h2><div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">{effectiveConfig.whatWeOffer.map((offer: any, index: number) => <div key={index} className="overflow-hidden rounded-[24px] border border-[#e7dfd1] bg-[#fffdfa]">{offer?.image?.url ? <img src={offer.image.url} alt={offer.title} className="h-52 w-full object-cover" /> : <div className="h-52 bg-[linear-gradient(135deg,#f4ebdf,#fbf7f0)]" />}<div className="p-5"><h3 className="text-lg font-semibold text-[#221819]">{offer.title}</h3><p className="mt-2 text-sm text-gray-600 leading-6">{offer.description}</p></div></div>)}</div></div></section>}
 

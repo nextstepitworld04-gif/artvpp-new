@@ -84,7 +84,7 @@
 - Gmail account (for sending emails)
 - Razorpay account (for payments)
 
-### Installation
+### Installation & Setup
 
 1. **Clone the repository**
    ```bash
@@ -92,24 +92,43 @@
    cd artvpp
    ```
 
-2. **Install dependencies**
+2. **Backend Setup**
    ```bash
    cd backend
    npm install
-   ```
-
-3. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your credentials
-   ```
-
-4. **Start the server**
-   ```bash
+   # Create .env based on .env.example
    npm run dev
    ```
+   The backend will run on `http://localhost:5000`
 
-   Server will run on `http://localhost:5000`
+3. **Frontend Setup**
+   ```bash
+   cd ../frontart
+   npm install
+   npm run dev
+   ```
+   The frontend will run on `http://localhost:5173`
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 18** with **Vite**
+- **Tailwind CSS 4** for styling
+- **React Router Dom 7** for routing
+- **Framer Motion** for animations
+- **Lucide React** for icons
+- **Shadcn/UI** & **Radix UI** primitives
+
+### Backend
+The backend is built with Node.js and Express, following ES Modules (ESM) syntax.
+- **Entry Point**: `backend/server.js` (Primary ESM entry point)
+- **Database**: MongoDB with Mongoose
+- **Authentication**: JWT with Passport.js
+- **File Storage**: Cloudinary integration
+- **Payments**: Razorpay integration
+- **Nodemailer** for email notifications
 
 ---
 

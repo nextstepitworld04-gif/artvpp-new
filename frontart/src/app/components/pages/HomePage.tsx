@@ -317,7 +317,7 @@ export function HomePage() {
                 {
                   name: 'Physical Art',
                   subtitle: 'Originals & prints',
-                  image: 'https://images.unsplash.com/photo-1610401163940-c7a80f2e1fdb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=900',
+                  image: 'https://russell-collection.com/wp-content/uploads/2025/04/abstract-art-examples.jpg?&w=900',
                   onClick: () => navigate('/marketplace')
                 },
                 {
@@ -451,8 +451,8 @@ export function HomePage() {
       </section>
 
       {/* Featured Artists */}
-      <section className="py-24 bg-[#F8F9FB]" >
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 px-5 bg-[#fafafa]">
+        <div className="max-w-[1400px] mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -460,24 +460,27 @@ export function HomePage() {
             variants={stagger}
           >
             <motion.div variants={fadeIn} className="text-center mb-16">
-              <h2 className="text-5xl lg:text-6xl mb-4 font-light tracking-tight text-gray-900">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                 Featured Artists
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto font-light">
-                Meet the creative minds behind our collection
+              <div className="w-24 h-1 bg-gradient-to-r from-[#a73f2b] to-[#b30452] mx-auto mb-6 rounded-full" />
+              <p className="text-gray-600 max-w-2xl mx-auto text-lg font-light">
+                Meet the creative minds behind our selection
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {featuredArtists.map((artist, index) => (
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-y-20 gap-x-8 pt-10">
+              {featuredArtists.map((artist) => (
                 <motion.div
                   key={artist.id}
                   variants={fadeIn}
-                  whileHover={{ y: -10 }}
-                  className="text-center group cursor-pointer"
+                  whileHover={{ y: -6, boxShadow: '0 14px 40px rgba(0,0,0,0.12)' }}
+                  className="bg-white rounded-[18px] p-7 pt-16 shadow-[0_8px_30px_rgba(0,0,0,0.08)] flex flex-col items-center text-center transition-all duration-300 ease-in-out group cursor-pointer relative"
+                  onClick={() => handleViewPortfolio(artist.id)}
                 >
-                  <div className="relative inline-block mb-6">
-                    <div className="w-40 h-40 rounded-full overflow-hidden bg-gray-200 border-[3px] border-white shadow-[0_15px_40px_rgba(15,23,42,0.16)]">
+                  {/* Overlapping Artist Image */}
+                  <div className="absolute -top-[65px] left-1/2 -translate-x-1/2 z-10">
+                    <div className="w-[130px] h-[130px] rounded-full overflow-hidden border-4 border-white shadow-[0_8px_25px_rgba(0,0,0,0.15)] bg-white">
                       <img
                         src={artist.avatar}
                         alt={artist.name}
@@ -486,28 +489,42 @@ export function HomePage() {
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-medium text-gray-900 mb-2">{artist.name}</h3>
-                  <p className="text-sm text-gray-600 font-light mb-4">{artist.specialty}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>
+                    {artist.name}
+                  </h3>
+                  <p className="text-sm text-gray-500 font-medium mb-6">
+                    {artist.specialty}
+                  </p>
 
-                  <div className="flex items-center justify-center gap-6 text-sm text-gray-500 mb-6">
-                    <div className="px-4 py-2 rounded-full bg-white shadow-sm border border-slate-100">
-                      <div className="font-medium text-gray-900">{artist.artworks}</div>
-                      <div className="text-xs font-light">Works</div>
+                  <div className="w-full flex items-center justify-around border-y border-gray-50 py-4 mb-6">
+                    <div className="text-center">
+                      <div className="flex items-center gap-1.5 justify-center">
+                        <span className="text-xs">🎨</span>
+                        <div className="text-lg font-bold text-gray-900 bg-[#f5f5f5] px-3 py-1 rounded-[14px]">{artist.artworks}</div>
+                      </div>
+                      <div className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold mt-1">Works</div>
                     </div>
-                    <div className="px-4 py-2 rounded-full bg-gradient-to-r from-[#a73f2b] to-[#b30452] hover:brightness-110 text-white shadow-sm hover:shadow-[0px_4px_12px_rgba(179,4,82,0.2)] transition-all cursor-pointer">
-                      <div className="font-medium">{artist.followers}</div>
-                      <div className="text-xs font-light">Followers</div>
+                    <div className="w-[1px] h-10 bg-gray-100" />
+                    <div className="text-center">
+                      <div className="flex items-center gap-1.5 justify-center">
+                        <span className="text-xs">👥</span>
+                        <div className="inline-flex items-center px-3.5 py-1 bg-gradient-to-r from-[#a73f2b] to-[#b30452] text-white rounded-full text-xs font-bold shadow-sm">
+                          {artist.followers}
+                        </div>
+                      </div>
+                      <div className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold mt-1">Followers</div>
                     </div>
                   </div>
 
-                  <Button
-                    variant="ghost"
-                    onClick={() => handleViewPortfolio(artist.id)}
-                    className="text-slate-900 hover:text-white font-medium rounded-full hover:bg-gradient-to-r hover:from-[#a73f2b] hover:to-[#b30452] px-6 py-2 transition-all duration-300"
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleViewPortfolio(artist.id);
+                    }}
+                    className="w-full bg-gradient-to-r from-[#a73f2b] to-[#b30452] text-white font-bold py-2.5 rounded-[10px] transition-all duration-300 hover:-translate-y-0.5 shadow-md shadow-[#b30452]/20 text-sm"
                   >
-                    View Portfolio
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
+                    View Profile
+                  </button>
                 </motion.div>
               ))}
             </div>
@@ -515,82 +532,6 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24 bg-[#F8F9FB]" >
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={stagger}
-          >
-            <motion.div variants={fadeIn} className="text-center mb-16">
-              <h2 className="text-5xl lg:text-6xl mb-4 font-light tracking-tight text-gray-900">
-                Trusted by Collectors
-              </h2>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  name: "Priya Sharma",
-                  role: "Art Collector",
-                  location: "Mumbai",
-                  image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
-                  testimonial: "Artvpp has completely transformed my approach to collecting art. The quality and authenticity are unmatched.",
-                  rating: 5
-                },
-                {
-                  name: "Rahul Verma",
-                  role: "Interior Designer",
-                  location: "Delhi",
-                  image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
-                  testimonial: "I source all my client projects through Artvpp. The curation is exceptional and the service is seamless.",
-                  rating: 5
-                },
-                {
-                  name: "Ananya Patel",
-                  role: "First-Time Buyer",
-                  location: "Bangalore",
-                  image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
-                  testimonial: "As someone new to art collecting, Artvpp made the entire experience enjoyable and educational.",
-                  rating: 5
-                }
-              ].map((testimonial, index) => (
-                <motion.div key={index} variants={fadeIn}>
-                  <Card className="h-full border border-slate-100 shadow-[0_10px_30px_rgba(15,23,42,0.06)] bg-white rounded-[12px] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
-                    <CardContent className="p-10">
-                      <div className="flex gap-1 mb-6">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-[#b30452] text-[#b30452]" />
-                        ))}
-                      </div>
-
-                      <p className="text-gray-700 mb-8 text-lg font-light leading-relaxed italic">
-                        "{testimonial.testimonial}"
-                      </p>
-
-                      <div className="flex items-center gap-4">
-                        <img
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          className="w-16 h-16 rounded-full object-cover"
-                        />
-                        <div>
-                          <div className="font-medium text-gray-900">{testimonial.name}</div>
-                          <div className="text-sm text-gray-600 font-light">
-                            {testimonial.role}, {testimonial.location}
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Why Choose Artvpp */}
       <section className="py-20 bg-white" >
