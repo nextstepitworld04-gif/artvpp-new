@@ -32,10 +32,17 @@ const PORT = process.env.PORT || 5000;
 // CORS CONFIGURATION (MUST BE FIRST)
 // ===========================================
 
+// ===========================================
+// CORS CONFIGURATION (MUST BE FIRST)
+// ===========================================
+
 // CORS - Only allow requests from your frontend domains
 const defaultDevOrigins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "http://localhost:5174",
+    "http://127.0.0.1:5174",
+    "https://artvpp-new.vercel.app",
     "https://artvpp-new-seven.vercel.app"
 ];
 
@@ -50,7 +57,10 @@ app.use(cors({
         // Allow requests with no origin (mobile apps, Postman, etc.)
         if (!origin) return callback(null, true);
 
-        if (allowedOrigins.includes(origin)) {
+        // Allow any vercel.app subdomains in production or dev
+        const isVercel = /\.vercel\.app$/.test(origin);
+
+        if (allowedOrigins.includes(origin) || isVercel) {
             callback(null, true);
         } else if (process.env.NODE_ENV !== "production" && /localhost|127\.0\.0\.1/.test(origin)) {
             // Keep local development flexible even if .env wasn't loaded from expected path.
@@ -229,7 +239,9 @@ const startServer = async () => {
     }
 };
 
-startServer();
+if (process.env.NODE_ENV !== "production") {
+    startServer();
+}
 
 // export app for Vercel
 export default app;
