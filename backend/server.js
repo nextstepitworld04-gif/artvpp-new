@@ -206,20 +206,23 @@ app.use(errorHandler);
 
 const startServer = async () => {
     try {
-        // Connect to MongoDB first
         await connectDB();
 
-        app.listen(PORT, () => {
-            console.log(`
+        // Only run local server (NOT on Vercel)
+        if (process.env.NODE_ENV !== "production") {
+            app.listen(PORT, () => {
+                console.log(`
 ╔════════════════════════════════════════════╗
 ║     🎨 ArtVPP Server Started Successfully  ║
 ╠════════════════════════════════════════════╣
-║  Port: ${PORT}                               ║
-║  Mode: ${process.env.NODE_ENV || "development"}                       ║
-║  Time: ${new Date().toLocaleTimeString()}                          ║
+║  Port: ${PORT}                             ║
+║  Mode: ${process.env.NODE_ENV || "development"}                   ║
+║  Time: ${new Date().toLocaleTimeString()}                        ║
 ╚════════════════════════════════════════════╝
-            `);
-        });
+                `);
+            });
+        }
+
     } catch (error) {
         console.error("❌ Failed to start server:", error.message);
         process.exit(1);
@@ -227,3 +230,6 @@ const startServer = async () => {
 };
 
 startServer();
+
+// export app for Vercel
+export default app;
