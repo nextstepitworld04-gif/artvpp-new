@@ -1,6 +1,7 @@
 {
-    "name": "artvpp-root",
+    "name": "artvpp-monorepo",
     "version": "1.0.0",
+    "type": "module",
     "private": true,
     "scripts": {
         "build:frontend": "cd frontart && npm install && npm run build",
