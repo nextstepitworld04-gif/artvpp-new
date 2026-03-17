@@ -1,10 +1,18 @@
 import axios from 'axios';
 
-// Create axios instance with base configuration
+
+// Detect environment
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD
+    ? "/api/v1"
+    : "http://localhost:5000/api/v1");
+
+// Create axios instance
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1',
+  baseURL: API_BASE_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
