@@ -1,6 +1,7 @@
 {
   "name": "artvpp-backend",
   "version": "1.0.0",
+  "type": "module",
   "description": "Backend for ArtVPP - College E-commerce Platform for Student Artists",
   "main": "server.js",
   "scripts": {

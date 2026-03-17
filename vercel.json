@@ -1,17 +1,4 @@
 {
-  "builds": [
-    {
-      "src": "api/index.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "frontart/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
   "routes": [
     {
       "src": "/api/(.*)",
@@ -19,7 +6,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "frontart/dist/index.html"
+      "dest": "/frontart/dist/index.html"
     }
   ]
 }
